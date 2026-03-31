@@ -12,3 +12,4 @@ D:\Project\personal\p\identity\src\Domain\obj\Debug\net8.0\refint\Domain.dll
 D:\Project\personal\p\identity\src\Domain\obj\Debug\net8.0\Domain.pdb
 D:\Project\personal\p\identity\src\Domain\obj\Debug\net8.0\Domain.genruntimeconfig.cache
 D:\Project\personal\p\identity\src\Domain\obj\Debug\net8.0\ref\Domain.dll
+D:\Project\personal\p\identity\src\Domain\obj\Debug\net8.0\Domain.sourcelink.json

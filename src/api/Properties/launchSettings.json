@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "p.api": {
+    "identity.api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
