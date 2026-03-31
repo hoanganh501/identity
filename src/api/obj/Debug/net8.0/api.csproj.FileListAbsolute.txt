@@ -84,3 +84,4 @@ D:\Project\personal\p\identity\src\api\obj\Debug\net8.0\refint\api.dll
 D:\Project\personal\p\identity\src\api\obj\Debug\net8.0\api.pdb
 D:\Project\personal\p\identity\src\api\obj\Debug\net8.0\api.genruntimeconfig.cache
 D:\Project\personal\p\identity\src\api\obj\Debug\net8.0\ref\api.dll
+D:\Project\personal\p\identity\src\api\obj\Debug\net8.0\api.sourcelink.json
