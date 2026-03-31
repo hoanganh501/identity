@@ -1,5 +1,7 @@
 ﻿using Domain.Entity;
+using Domain.Interface;
 using Infrastructure.Persistence;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,13 +14,16 @@ namespace Infrastructure
         this IServiceCollection services,
         string connectionString)
         {
-            services.AddDbContext<AppDbContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(connectionString));
 
 
             services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
-                .AddEntityFrameworkStores<AppDbContext>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IUserRepository, UserRepository>();
+
 
             return services;
         }

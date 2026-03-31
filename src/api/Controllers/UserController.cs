@@ -1,27 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.Interface;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
     public class UserController: BaseApi
     {
         private readonly ILogger<UserController> _logger;
+        private readonly IUserService _userService;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(ILogger<UserController> logger, IUserService userService)
         {
             _logger = logger;
+            _userService = userService;
         }
 
-        [HttpGet()]
-        public async Task<IActionResult> GetUserAsync()
+        [HttpGet("{id}")]
+        //[AllowAnonymous]
+        public async Task<IActionResult> GetUserAsync(Guid id)
         {
-            await Task.Delay(100);
-
-            return Ok(new
-            {
-                Id = Guid.NewGuid(),
-                Username = "admin",
-                Email = "admin@gmail.com"
-            });
+            return Ok(await _userService.GetUserByIdAsync(id));
         }
     }
 }
+
