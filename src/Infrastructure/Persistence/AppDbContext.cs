@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Domain.Entity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
-    public class AppDbContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>
+    public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
@@ -20,7 +22,7 @@ namespace Infrastructure.Persistence
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<IdentityUser<Guid>>(b =>
+            builder.Entity<ApplicationUser>(b =>
             {
                 b.ToTable("Users");
             });
@@ -41,7 +43,7 @@ namespace Infrastructure.Persistence
             });
 
             builder.Entity<IdentityRoleClaim<Guid>>(b =>
-            {
+            {   
                 b.ToTable("RoleClaims");
             });
 
@@ -54,6 +56,12 @@ namespace Infrastructure.Persistence
             {
                 b.ToTable("UserTokens");
             });
+        }
+
+        public static async Task SeedAsync(IServiceProvider services)
+        {
+            var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+            await InitUser.SeedAsync(userManager);
         }
     }
 }
