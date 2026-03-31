@@ -10,7 +10,7 @@ namespace Infrastructure.Persistence
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
-            var connectionString = "Server=localhost;Database=PersionalUser2;User Id=sa;Password=YourStrong@Pass123;TrustServerCertificate=True;";
+            var connectionString = "Server=localhost;Database=PersionalUser3;User Id=sa;Password=YourStrong@Pass123;TrustServerCertificate=True;";
 
             optionsBuilder.UseSqlServer(connectionString);
 

@@ -1,4 +1,5 @@
-﻿using Infrastructure.Persistence;
+﻿using Domain.Entity;
+using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +16,7 @@ namespace Infrastructure
             options.UseSqlServer(connectionString));
 
 
-            services.AddIdentity<IdentityUser<Guid>, IdentityRole<Guid>>()
+            services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
