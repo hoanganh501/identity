@@ -1,6 +1,7 @@
 ﻿using Application.Interface;
 using Application.Request;
 using Application.Respsone;
+using AutoMapper;
 using Domain.Entity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -16,10 +17,12 @@ namespace Application.Services
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
-        public AuthService(UserManager<ApplicationUser> userManager, IConfiguration configuration)
+        private readonly IMapper _mapper;
+        public AuthService(UserManager<ApplicationUser> userManager, IConfiguration configuration, IMapper mapper)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _mapper = mapper;
         }
 
         public async Task<AuthResponse> LoginAsync(AuthRequest request)
@@ -46,12 +49,9 @@ namespace Application.Services
             );
 
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return new AuthResponse()
-            {
-                AccessToken = tokenString,
-                UserName = user.UserName!
-            };
+            var result = _mapper.Map<AuthResponse>(user);
+            result.AccessToken = tokenString;
+            return result;
         }
     }
 }
