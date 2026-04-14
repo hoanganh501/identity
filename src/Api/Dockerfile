@@ -5,10 +5,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 8080
 
-# ⚠️ optional: only if APP_UID exists
-# USER $APP_UID
-
-
 # =========================
 # BUILD
 # =========================
@@ -16,8 +12,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-# ✅ Copy ALL project files (for restore)
-COPY Api/Api.csproj Api/
+zCOPY Api/Api.csproj Api/
 COPY Application/Application.csproj Application/
 COPY Domain/Domain.csproj Domain/
 COPY Infrastructure/Infrastructure.csproj Infrastructure/

@@ -18,7 +18,7 @@ namespace Infrastructure
             options.UseSqlServer(connectionString));
 
 
-            services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 

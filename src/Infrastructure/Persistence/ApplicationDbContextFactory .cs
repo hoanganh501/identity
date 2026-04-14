@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Persistence
 {
@@ -9,7 +10,16 @@ namespace Infrastructure.Persistence
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 
-            var connectionString = "Server=localhost;Database=PersionalUser3;User Id=sa;Password=YourStrong@Pass123;TrustServerCertificate=True;";
+            var basePath = Path.Combine(Directory.GetCurrentDirectory(), "../Api");
+
+            Console.WriteLine($"Base path: {basePath}");
+
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(basePath)
+                .AddJsonFile("appsettings.json", optional: false)
+                .Build();
+
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             optionsBuilder.UseSqlServer(connectionString);
 

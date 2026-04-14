@@ -16,7 +16,6 @@ namespace api.Controllers
         }
 
         [HttpGet("{id}")]
-        //[AllowAnonymous]
         public async Task<IActionResult> GetUserAsync(Guid id)
         {
             return Ok(await _userService.GetUserByIdAsync(id));
