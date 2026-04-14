@@ -5,10 +5,12 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/src/">
-    <Project Path="src/api/api.csproj" />
     <Project Path="src/Application/Application.csproj" Id="be127a11-8222-4649-b62a-ebfe8a9779d7" />
     <Project Path="src/Domain/Domain.csproj" Id="48f0f8f5-0910-46e0-ac0b-d3247fb92a88" />
     <Project Path="src/Infrastructure/Infrastructure.csproj" Id="9531dd19-0db5-4556-a111-2237d4700f0c" />
+  </Folder>
+  <Folder Name="/src/Api/">
+    <Project Path="src/api/api.csproj" DisplayName="Api" />
   </Folder>
   <Folder Name="/test/">
     <Project Path="test/TestProject/TestProject.csproj" />

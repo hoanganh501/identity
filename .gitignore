@@ -1,0 +1,22 @@
+# Build folders
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# .NET files
+*.dll
+*.exe
+*.pdb
+*.cache
+*.deps.json
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
