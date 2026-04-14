@@ -16,6 +16,7 @@ namespace api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> GetUserAsync(Guid id)
         {
             return Ok(await _userService.GetUserByIdAsync(id));

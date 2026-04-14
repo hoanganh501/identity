@@ -31,14 +31,21 @@ namespace Application.Services
 
             if (user == null || !await _userManager.CheckPasswordAsync(user, request.password)) throw new UnauthorizedAccessException("Invalid username or password.");
 
+            var roles = await _userManager.GetRolesAsync(user);
+
             var signingkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]!));
 
             var credentials = new SigningCredentials(signingkey, SecurityAlgorithms.HmacSha256);
 
             List<Claim> claims = [
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.UserName!)
-                ];
+                new Claim(ClaimTypes.Name, user.UserName!),           
+            ];
+
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],
